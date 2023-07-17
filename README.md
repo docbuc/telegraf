@@ -1,20 +1,20 @@
 # Preconfigured telegraf docker image
 
-Collects metrics of your system and docker.
+Collects metrics of your system and docker and post to influxdb_v2
 
 Use environment variables to send data to influxdb
 
-* `INFLUXDB_HOST` hostname for influxdb server
-* `INFLUXDB_PORT` port for influxdb server
-* `INFLUXDB_USER` username for influxdb server
-* `INFLUXDB_PASS` password for influxdb server
+* `INFLUXDB_URL` URL for influxdb server
+* `INFLUXDB_TOKEN` Token for influxdb authentication
+* `INFLUXDB_BUCKET` bucket for influxdb
+* `INFLUXDB_ORG` organization for influxdb
 
 Use this image like
 
 ```
 docker run -d -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  -e INFLUXDB_HOST=influx.example.com -e INFLUXDB_PORT=8086 \
-  -e INFLUXDB_USER=influx -e INFLUXDB_PASS=secret \
+  -e INFLUXDB_URL=https://influx.example.com \
+  -e INFLUXDB_ORG=influx -e INFLUXDB_TOKEN=verylongsecret \
+  -e INFLUXDB_BUCKET=telegraf \
   docbuc/telegraf
 ```
-  
